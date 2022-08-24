@@ -1,0 +1,14 @@
+{%extends 'todo/base.html'%}
+{%block title%}Home{%endblock%}
+{%block content%}
+{%if user.is_authenticated%}
+<h1>Hey! {{user.username}}</h1>
+<form action="{%url 'logout'%}" method="post">
+    {% csrf_token %}
+    <button type="submit" style="padding: 2rem;">Logout</button>
+</form>
+{%else%}
+<a href="{%url 'sign_up'%}">Login</a>
+{%endif%}
+
+{%endblock%}
