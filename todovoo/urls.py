@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 from django.urls import path, include
-from todo.views import SignUp, CurrentTodos, Home, LogOut
+from todo.views import SignUp, CurrentTodos, Home, LogOut, LogIn
 app_name = "todo"
 
 urlpatterns = [
@@ -13,4 +13,5 @@ urlpatterns = [
     # todovoo
     path('current-todos/', CurrentTodos, name='current_todos'),
     path('', Home, name="home"),
+    path('login',LogIn,name="log_in"),
 ]
