@@ -4,12 +4,28 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
+from .forms import TodoForm
+from .models import Todo
 # Create your views here.
 
 
 def Home(request):
-    return render(request, "todo/home.html")
+    todo=Todo.objects.filter(creator=request.user)
+    return render(request, "todo/home.html",{"todos":todo})
 
+def Create(request):
+    if request.method=="GET":
+        return render(request,"todo/create.html",{"error":"Get Request ..."})
+    else:
+        try:
+            form=TodoForm(request.POST)
+            form.save(commit=False)
+            form.creator=request.user
+            form.save()
+            return redirect("current_todos")
+        except ValueError:
+            return render(request,"todo/create.html",{"error":"Bad Data Passed in. Please Try Again!"})
+            
 
 def LogIn(request):
     if request.method == "GET":
@@ -51,4 +67,5 @@ def SignUp(request):
 
 
 def CurrentTodos(request):
-    return render(request, "todo/todo.html")
+    todo=Todo.objects.filter(creator=request.user)
+    return render(request, "todo/todo.html",{"todos":todo})

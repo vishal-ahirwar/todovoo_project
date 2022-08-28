@@ -2,4 +2,11 @@
 {%block title%}TODO'S{%endblock%}
 {%block content%}
 <h1>Hello, World!</h1>
+
+<h1>Your Todo's</h1>
+{%for todo in todos%}
+<h1>{{todo.title}}</h1>
+<p>Created : {{todo.create}}</p>
+{%endfor%}
+
 {%endblock%}

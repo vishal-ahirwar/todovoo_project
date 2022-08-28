@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 from django.urls import path, include
-from todo.views import SignUp, CurrentTodos, Home, LogOut, LogIn
+from todo.views import SignUp, CurrentTodos, Home, LogOut, LogIn, Create
 app_name = "todo"
 
 urlpatterns = [
@@ -14,4 +14,5 @@ urlpatterns = [
     path('current-todos/', CurrentTodos, name='current_todos'),
     path('', Home, name="home"),
     path('login',LogIn,name="log_in"),
+    path('create',Create,name="create"),
 ]

@@ -7,6 +7,13 @@
     {% csrf_token %}
     <button type="submit" style="padding: 2rem;">Logout</button>
 </form>
+<hr>
+<h1>Your Todo's</h1>
+{%for todo in todos%}
+<h1>{{todo.title}}</h1>
+<p>Created : {{todo.create}}</p>
+{%endfor%}
+
 {%else%}
 <a href="{%url 'log_in'%}">Login</a>
 {%endif%}
