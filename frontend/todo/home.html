@@ -7,15 +7,30 @@
     {% csrf_token %}
     <button type="submit" style="padding: 2rem;">Logout</button>
 </form>
+
+<h4 style="color:red;">{{error}}</h4>
+{% csrf_token %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{form}}
+    {% csrf_token %}        
+    <button type="submit">Create</button>
 <hr>
 <h1>Your Todo's</h1>
 {%for todo in todos%}
-<h1>{{todo.title}}</h1>
-<p>Created : {{todo.create}}</p>
-{%endfor%}
+<center>
 
-{%else%}
-<a href="{%url 'log_in'%}">Login</a>
-{%endif%}
+
+    <a href="{%url 'viewtodo' todo.id %}"><h3>{{todo.title}}</h3></a>
+
+    <p>Created : {{todo.created}}</p>
+    <p>Completed: {{todo.datecompleted}}</p>
+
+    {%endfor%}
+    
+    {%else%}
+    <a href="{%url 'log_in'%}">Login</a>
+    {%endif%}
+</center>
 
 {%endblock%}
