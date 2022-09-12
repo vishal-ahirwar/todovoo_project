@@ -16,7 +16,7 @@ urlpatterns = [
     path('login',LogIn,name="log_in"),
     path('create',Create,name="create"),
     path('viewtodo/<int:todo_pk>',ViewToDo,name="viewtodo"),
-     path('viewtodo/<int:todo_pk>/complete',CompleteToDo,name="complete"),
-       path('viewtodo/<int:todo_pk>/delete',DeleteToDo,name="delete")
-
+    path('viewtodo/<int:todo_pk>/complete',CompleteToDo,name="complete"),
+    path('viewtodo/<int:todo_pk>/delete',DeleteToDo,name="delete"),
+    path('api/',include("api.urls"),name='api'),
 ]
